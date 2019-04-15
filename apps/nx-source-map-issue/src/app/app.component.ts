@@ -7,4 +7,10 @@ import { Component } from "@angular/core";
 })
 export class AppComponent {
   title = "nx-source-map-issue";
+
+  constructor() {
+    console.log('app break point does not work');
+    // debugger;
+  }
+
 }
