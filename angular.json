@@ -1,0 +1,134 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "",
+  "projects": {
+    "nx-source-map-issue": {
+      "root": "apps/nx-source-map-issue/",
+      "sourceRoot": "apps/nx-source-map-issue/src",
+      "projectType": "application",
+      "prefix": "foo",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/nx-source-map-issue",
+            "index": "apps/nx-source-map-issue/src/index.html",
+            "main": "apps/nx-source-map-issue/src/main.ts",
+            "polyfills": "apps/nx-source-map-issue/src/polyfills.ts",
+            "tsConfig": "apps/nx-source-map-issue/tsconfig.app.json",
+            "assets": [
+              "apps/nx-source-map-issue/src/favicon.ico",
+              "apps/nx-source-map-issue/src/assets"
+            ],
+            "styles": ["apps/nx-source-map-issue/src/styles.css"],
+            "scripts": [],
+            "es5BrowserSupport": true
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/nx-source-map-issue/src/environments/environment.ts",
+                  "with": "apps/nx-source-map-issue/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "nx-source-map-issue:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "nx-source-map-issue:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "nx-source-map-issue:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/nx-source-map-issue/tsconfig.app.json",
+              "apps/nx-source-map-issue/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "apps/nx-source-map-issue/jest.config.js",
+            "tsConfig": "apps/nx-source-map-issue/tsconfig.spec.json",
+            "setupFile": "apps/nx-source-map-issue/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "nx-source-map-issue-e2e": {
+      "root": "apps/nx-source-map-issue-e2e",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/builders:cypress",
+          "options": {
+            "cypressConfig": "apps/nx-source-map-issue-e2e/cypress.json",
+            "tsConfig": "apps/nx-source-map-issue-e2e/tsconfig.e2e.json",
+            "devServerTarget": "nx-source-map-issue:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "nx-source-map-issue:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/nx-source-map-issue-e2e/tsconfig.e2e.json",
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false,
+      "versionMismatch": false
+    },
+    "defaultCollection": "@nrwl/schematics"
+  },
+  "schematics": {
+    "@nrwl/schematics:application": {
+      "framework": "angular"
+    }
+  },
+  "defaultProject": "nx-source-map-issue"
+}

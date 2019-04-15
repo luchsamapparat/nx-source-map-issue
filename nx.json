@@ -1,0 +1,18 @@
+{
+  "npmScope": "foo",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": "*",
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "nx-source-map-issue": {
+      "tags": []
+    },
+    "nx-source-map-issue-e2e": {
+      "tags": []
+    }
+  }
+}
